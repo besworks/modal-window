@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Modal Window WebComponent Test </title>
+    <script type="module" src="modal-window.js"></script>
+    <style>
+      * {
+         box-sizing: border-box;
+      }
+      
+      body {
+        margin: 0; 
+      }
+      
+      #splash {
+        display: block;
+        background: cadetblue;
+        height: 100vh;
+        text-align: center;
+      }
+      
+      #splash h1 {
+        margin: 0;
+        padding: 1rem;
+      }
+      
+      #splash p {
+        max-width: 20rem;
+        margin: 0 auto;
+      }
+      
+      #trigger {
+        margin: 1rem;
+        padding: 1rem;
+        border: 0;
+        border-radius: 3px;
+        background: white;
+        color: #333;
+        font-size: 1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 0 1em 0 rgba(0,0,0,0.7);
+      }
+      
+      #trigger:hover {
+        background: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="splash">
+      <h1> Modal Window Test Page </h1>
+      <p> Click the button below to open a modal window. </p>
+      <button id="trigger"> Open Modal </button>
+    </section>
+    <template id="modal-content">
+      <p> This is a modal window </p>
+    </template>
+    <script>
+      document.getElementById('trigger').addEventListener('click', event => {
+        let modal = document.createElement('modal-window');
+        let template = document.getElementById('modal-content');
+        modal.append(document.importNode(template.content, true));
+        document.body.append(modal);
+      });
+    </script>
+  </body>
+</html>
